@@ -3,8 +3,16 @@ name = "ice_testcase"
 version = "0.1.0"
 edition = "2018"
 
-[dependencies]
-nalgebra = { git = "https://github.com/rustsim/nalgebra.git", rev="31ef5f0ab02c6ecf279867f07cd63e16cece8b75", features = [ "serde-serialize" ] }
+[dependencies.nalgebra]
+git = "https://github.com/rustsim/nalgebra.git"
+rev = "31ef5f0ab02c6ecf279867f07cd63e16cece8b75"
+default-features = false
+features = ["serde-serialize", "default"]
+
 # Even though `serde` is not actually used directly by this crate,
-# removing it will prevent reproduction of the ICE
-serde = { version="1.0", features = [ "derive" ] }
+# removing it will prevent reproduction of the ICE.
+# (This does however enable the derive feature in nalgebra/serde)
+[dependencies.serde]
+version = "1.0"
+default-features = false
+features = ["derive"]
